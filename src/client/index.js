@@ -6,6 +6,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import Home from '../container/home/Index'
+import ClientRouter from '../routers/ClientRouter'
 
-ReactDom.render(<Home/>, document.querySelector("#root"));
+ReactDom.render(<ClientRouter/>, document.querySelector("#root"));

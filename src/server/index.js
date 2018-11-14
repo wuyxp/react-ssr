@@ -9,9 +9,16 @@ import ReactDomServer from 'react-dom/server';
 
 const app = express();
 
-import Home from '../container/home/Index'
+import createServerRouter from '../routers/ServerRouter'
 
-const container = `
+
+app.use('/', express.static("src/client/dist"));
+
+app.get('*', (req, res) => {
+
+    const ServerApp = createServerRouter(req, res);
+
+    const container = `
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,17 +28,14 @@ const container = `
     <title>Document</title>
 </head>
 <body>
-    <div id="root">${ReactDomServer.renderToString(<Home />)}</div>
+    <div id="root">${ReactDomServer.renderToString(<ServerApp />)}</div>
 </body>
 <script src="/index.js"></script>
 </html>
 `;
-
-app.get('/', (req, res) => {
     res.send(container)
 });
 
-app.use('/', express.static("src/client/dist"));
 
 app.listen(8000, () => {
     console.log('Example app listening on port 8000!');
