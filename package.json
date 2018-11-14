@@ -2,11 +2,11 @@
   "name": "react-ssr",
   "version": "1.0.0",
   "description": "react服务器端渲染",
-  "main": "server/index.js",
+  "main": "src/server/index.js",
   "scripts": {
     "dev": "./node_modules/npm-run-all/bin/npm-run-all/index.js --parallel \"dev:server:**\" \"dev:client:**\"   ",
     "dev:server": "./node_modules/npm-run-all/bin/npm-run-all/index.js --parallel \"dev:server:**\"   ",
-    "dev:server:run": "./node_modules/nodemon/bin/nodemon.js --watch ./server/dist/ --exec node ./server/dist/index.js ",
+    "dev:server:run": "./node_modules/nodemon/bin/nodemon.js --watch ./src/server/dist/ --exec node ./src/server/dist/index.js ",
     "dev:server:build": "./node_modules/webpack/bin/webpack.js --config ./build/webpack.server.js --watch",
     "dev:client:build": "./node_modules/webpack/bin/webpack.js --config ./build/webpack.client.js --watch"
   },

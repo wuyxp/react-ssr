@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     res.send(container)
 });
 
-app.use('/', express.static("client/dist"));
+app.use('/', express.static("src/client/dist"));
 
 app.listen(8000, () => {
     console.log('Example app listening on port 8000!');

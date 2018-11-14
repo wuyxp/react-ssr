@@ -9,11 +9,11 @@ const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
 
 const serverConfig = {
-    entry: './client/index.js',
+    entry: './src/client/index.js',
     mode: 'development',
     output: {
         filename: "index.js",
-        path: path.resolve(__dirname, '../client/dist')
+        path: path.resolve(__dirname, '../src/client/dist')
     },
 }
 module.exports = merge(baseConfig, serverConfig);
