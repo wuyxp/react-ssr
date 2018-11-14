@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wuyxp/react-ssr/issues"
   },
-  "homepage": "https://github.com/wuyxp/react-ssr#readme"
+  "homepage": "https://github.com/wuyxp/react-ssr#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
