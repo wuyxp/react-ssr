@@ -4,8 +4,9 @@
   "description": "react服务器端渲染",
   "main": "server/index.js",
   "scripts": {
-    "dev:server": "node server/dist/index.js",
-    "dev:build": "./node_modules/webpack/bin/webpack.js --config ./build/webpack.server.js"
+    "dev:server": "./node_modules/npm-run-all/bin/npm-run-all/index.js --parallel \"dev:server:**\"   ",
+    "dev:server:run": "./node_modules/nodemon/bin/nodemon.js --watch ./server/dist/ --exec node ./server/dist/index.js ",
+    "dev:server:build": "./node_modules/webpack/bin/webpack.js --config ./build/webpack.server.js --watch"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,8 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-root-import": "^6.1.0",
     "babel-preset-react": "^6.24.1",
+    "nodemon": "^1.18.6",
+    "npm-run-all": "^4.1.3",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-node-externals": "^1.7.2"
