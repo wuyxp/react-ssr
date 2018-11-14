@@ -23,12 +23,15 @@ const container = `
 <body>
     <div id="root">${ReactDomServer.renderToString(<Home />)}</div>
 </body>
+<script src="/index.js"></script>
 </html>
 `;
 
 app.get('/', (req, res) => {
     res.send(container)
 });
+
+app.use('/', express.static("client/dist"));
 
 app.listen(8000, () => {
     console.log('Example app listening on port 8000!');
