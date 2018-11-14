@@ -5,8 +5,11 @@
  */
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const merge = require('webpack-merge');
 
-module.exports = {
+const baseConfig = require('./webpack.base');
+
+const serverConfig = {
     target: "node",
     entry: './server/index.js',
     mode: 'development',
@@ -15,24 +18,5 @@ module.exports = {
         filename: "index.js",
         path: path.resolve(__dirname, '../server/dist')
     },
-    module: {
-        rules: [{
-            test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            options: {
-                presets: [ "@babel/preset-react","@babel/preset-env"],
-                plugins: [
-                    "@babel/plugin-transform-runtime",
-                    "@babel/plugin-syntax-dynamic-import",
-                    "@babel/plugin-syntax-import-meta",
-                    ["@babel/plugin-proposal-class-properties", { "loose": false }],
-                    "@babel/plugin-proposal-json-strings"
-
-                ]
-            }
-        }]
-    },
-
-
 }
+module.exports = merge(baseConfig, serverConfig);

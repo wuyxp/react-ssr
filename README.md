@@ -4,6 +4,7 @@ react服务器端渲染
 ### 简单服务器端渲染搭建
 ```$xslt
 build
+    - webpack.base.js // 公共打包文件
     - webpack.client.js // 客户端打包配置文件
     - webpack.server.js // 服务器打包配置文件
 container
