@@ -21,7 +21,7 @@ const Home = (props) => {
     )
 }
 const mapStateToProps = state => ({
-    name: state.name
+    name: state.home.name
 });
 
 export default connect(mapStateToProps, null)(Home);
