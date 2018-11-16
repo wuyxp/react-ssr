@@ -9,7 +9,9 @@ import ReactDom from 'react-dom';
 import App from '../container/App'
 import ClientRouter from '../routers/ClientRouter'
 
+import createStore from '../store'
+
 ReactDom.render(
-    (<App>
+    (<App initState={createStore()}>
         <ClientRouter />
     </App>), document.querySelector("#root"));

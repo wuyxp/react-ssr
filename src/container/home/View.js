@@ -23,5 +23,8 @@ const Home = (props) => {
 const mapStateToProps = state => ({
     name: state.home.name
 });
-
-export default connect(mapStateToProps, null)(Home);
+const HomeView = connect(mapStateToProps, null)(Home);
+HomeView.loadData = () => {
+    
+};
+export default HomeView

@@ -5,14 +5,22 @@
  */
 
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import App from './Index'
+import App from './index'
 
 export default () => {
     return (
         <BrowserRouter>
-            <App/>
+            <>
+            {
+                App.map(item => {
+                    return(
+                        <Route {...item} />
+                    )
+                })
+            }
+            </>
         </BrowserRouter>
     )
 }

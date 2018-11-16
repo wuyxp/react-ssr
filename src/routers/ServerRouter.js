@@ -4,16 +4,22 @@
  * @time: 2018/11/14 17:23
  */
 import React from 'react';
-import { StaticRouter } from 'react-router-dom';
+import {StaticRouter, Route, Switch} from 'react-router-dom';
 
-import App from './Index'
+import routes from './index'
 
 export default (req, res) => {
-    return () => {
-        return (
+        return () => (
             <StaticRouter location={req.url} context={{}}>
-                <App/>
+                <Switch>
+                    {
+                        routes.map(item => {
+                            return(
+                                <Route {...item} />
+                            )
+                        })
+                    }
+                </Switch>
             </StaticRouter>
         )
-    }
 }

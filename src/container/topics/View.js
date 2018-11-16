@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import Header from '../../components/Header'
 
 import { fetchRepositories } from './store/actions'
+import store from '../../store'
 
 class View extends Component{
 
@@ -33,7 +34,6 @@ class View extends Component{
             </>
         )
     }
-
 }
 
 const mapStateToProps = state => ({
@@ -45,4 +45,10 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(View);
+const TopicsView = connect(mapStateToProps, mapDispatchToProps)(View);
+
+TopicsView.loadData = (store) => {
+    return store.dispatch(fetchRepositories())
+};
+
+export default TopicsView;

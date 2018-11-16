@@ -13,9 +13,9 @@ const changeRepositories = repositoriesList => ({
 });
 export const fetchRepositories = () => {
     return  (dispatch) => {
-        axios.get("https://api.github.com/search/repositories?q=ALL&sort=star").then(res => {
-            dispatch(changeRepositories(res.data.items));
-            console.log(res);
+        return axios.get("https://api.github.com/search/repositories?q=ALL&sort=star").then(res => {
+            const items = res.data.items;
+            dispatch(changeRepositories(items));
         })
     }
 }
