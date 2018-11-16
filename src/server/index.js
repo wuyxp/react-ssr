@@ -63,7 +63,6 @@ window.__data__ = ${JSON.stringify(store.getState())}
             )
         );
         */
-        console.log(2);
         res.send(container);
     });
 });

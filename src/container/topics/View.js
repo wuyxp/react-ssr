@@ -13,7 +13,7 @@ import store from '../../store'
 class View extends Component{
 
     componentDidMount(){
-        this.props.fetchRepositories();
+        // this.props.fetchRepositories();
     }
 
     render() {
