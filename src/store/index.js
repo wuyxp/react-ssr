@@ -4,14 +4,15 @@
  * @time: 2018/11/15 17:29
  */
 
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { reducer as homeReducer } from '../container/home';
+import { reducer as topicsReducer } from '../container/topics'
 
-const initState = {
-    name: 'www'
-};
-const reducer = (state=initState, action) => {
-    return state;
-};
+const reducer = combineReducers({
+    home: homeReducer,
+    topics: topicsReducer
+});
+
 
 const store = createStore(reducer);
 export default store;

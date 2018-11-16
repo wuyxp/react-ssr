@@ -6,18 +6,18 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 
-import Home from '../container/home/Index'
-import Help from '../container/help/Index'
-import Headlines from '../container/headlines/Index'
-import Topics from '../container/topics/Index'
+import {View as HomeView} from '../container/home'
+import {View as HelpView } from '../container/help'
+import {View as HeadlinesView} from '../container/headlines'
+import {View as TopicsView} from '../container/topics'
 
 export default () => {
     return (
         <>
-            <Route component={Home}  path={"/"} exact />
-            <Route component={Help}  path={"/help"} exact />
-            <Route component={Headlines}  path={"/headlines"} exact />
-            <Route component={Topics}  path={"/topics"} exact />
+            <Route component={HomeView}  path={"/"} exact />
+            <Route component={HelpView}  path={"/help"} exact />
+            <Route component={HeadlinesView}  path={"/headlines"} exact />
+            <Route component={TopicsView}  path={"/topics"} exact />
         </>
     )
 }
