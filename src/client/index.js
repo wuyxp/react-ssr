@@ -6,6 +6,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import App from '../container/App'
 import ClientRouter from '../routers/ClientRouter'
 
-ReactDom.render(<ClientRouter/>, document.querySelector("#root"));
+ReactDom.render(
+    (<App>
+        <ClientRouter />
+    </App>), document.querySelector("#root"));

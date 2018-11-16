@@ -10,6 +10,7 @@ import ReactDomServer from 'react-dom/server';
 const app = express();
 
 import createServerRouter from '../routers/ServerRouter'
+import AppComponent from '../container/App'
 
 
 app.use('/', express.static("src/client/dist"));
@@ -28,7 +29,11 @@ app.get('*', (req, res) => {
     <title>Document</title>
 </head>
 <body>
-    <div id="root">${ReactDomServer.renderToString(<ServerApp />)}</div>
+    <div id="root">${ReactDomServer.renderToString(
+        <AppComponent>
+            <ServerApp />
+        </AppComponent>
+    )}</div>
 </body>
 <script src="/index.js"></script>
 </html>
