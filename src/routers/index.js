@@ -17,8 +17,8 @@ const router = [
         key: '/',
         component: HomeView,
         exact: true,
-        loadData: HomeView.loadData
-    },{
+        loadData: HomeView.loadData,
+    }, {
         path: '/help',
         key: '/help',
         component: HelpView,
@@ -26,7 +26,7 @@ const router = [
         loadData(){
             console.log('----Help----');
         }
-    }, {
+    },{
         path: '/headlines',
         key: '/headlines',
         component: HeadlinesView,

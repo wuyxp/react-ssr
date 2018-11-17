@@ -5,21 +5,24 @@
  */
 import React from 'react';
 import {StaticRouter, Route, Switch} from 'react-router-dom';
+import { renderRoutes } from 'react-router-config'
 
 import routes from './index'
 
 export default (req, res) => {
-        return () => (
-            <StaticRouter location={req.url} context={{}}>
-                <Switch>
-                    {
-                        routes.map(item => {
-                            return(
-                                <Route {...item} />
-                            )
-                        })
-                    }
-                </Switch>
-            </StaticRouter>
-        )
+    const router = renderRoutes(routes);
+    console.log(JSON.stringify(router))
+    return () => (
+        <StaticRouter location={req.url} context={{}}>
+            <>
+                {
+                    routes.map(item => {
+                        return(
+                            <Route {...item} />
+                        )
+                    })
+                }
+            </>
+        </StaticRouter>
+    )
 }
