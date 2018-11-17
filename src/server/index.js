@@ -21,13 +21,16 @@ const store = createStore();
 
 app.use('/', express.static("src/client/dist"));
 
-app.get('/topics', (req, res) => {
+app.get('*', (req, res) => {
 
+    console.log(req.url);
     const promises = [];
     routes.some(route => {
         const match = matchPath(req.url, route);
         if (match){
-            promises.push(route.loadData(store));
+            if(typeof route.loadData === 'function'){
+                promises.push(route.loadData(store));
+            }
         }
         return match
     });
