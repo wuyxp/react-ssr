@@ -12,9 +12,8 @@ import ClientRouter from '../routers/ClientRouter'
 import createStore from '../store'
 
 // 注水操作
-const __data__ = JSON.parse(window.__data__);
 
 ReactDom.render(
-    (<App initState={createStore(__data__)}>
+    (<App initState={createStore(window.__data__)}>
         <ClientRouter />
     </App>), document.querySelector("#root"));

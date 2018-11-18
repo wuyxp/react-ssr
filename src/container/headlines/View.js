@@ -10,7 +10,6 @@ import Header from '../../components/Header'
 export default () => {
     return (
         <>
-            <Header/>
             <h1>头条文章</h1>
         </>
     )

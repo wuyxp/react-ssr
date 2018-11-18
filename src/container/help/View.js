@@ -9,7 +9,6 @@ import Header from '../../components/Header'
 export default () => {
     return (
         <>
-            <Header/>
             <h1>请使用我们的帮助文档</h1>
         </>
     )

@@ -5,7 +5,6 @@
  */
 import express from 'express';
 import React from 'react';
-import ReactDomServer from "react-dom/server";
 import { matchPath } from 'react-router-dom'
 
 import createServerRouter from '../routers/ServerRouter'
