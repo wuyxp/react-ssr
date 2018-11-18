@@ -21,11 +21,11 @@ class View extends Component{
             <>
                 <h1>文由汝心生，笔墨语雀来</h1>
                 <dl>
-                    <dt>这里展示github最近最火的项目列表</dt>
+                    <dt>这里是我在语雀上的文章列表</dt>
                     {
                         this.props.repositories.map(item => {
                             return (
-                                <dd key={item.git_url}>{item.full_name}</dd>
+                                <dd key={item.slug}>{item.title}</dd>
                             )
                         })
                     }

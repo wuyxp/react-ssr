@@ -12,8 +12,8 @@ const changeRepositories = repositoriesList => ({
 });
 export const fetchRepositories = () => {
     return  (dispatch, getState, request) => {
-        return request.get("/api/search/repositories?q=ALL&sort=star").then(res => {
-            const items = res.data.items;
+        return request.get("/api/v2/repos/wuyxp/react/docs").then(res => {
+            const items = res.data.data;
             dispatch(changeRepositories(items));
         })
     }
