@@ -11,7 +11,7 @@ export default (props) => {
     return (
         <>
             <Header/>
-            {renderRoutes(props.route.route)}
+            {renderRoutes(props.route.routes)}
         </>
     )
 }

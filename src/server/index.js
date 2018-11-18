@@ -18,7 +18,6 @@ import createStore from '../store'
 const app = express();
 const store = createStore();
 
-
 app.use('/', express.static("src/client/dist"));
 app.use(favicon('src/favicon.ico'));
 
@@ -28,9 +27,8 @@ app.get('*', (req, res) => {
     /*
      * 这里将通过matchRoutes匹配的路由，过滤一下没有loadData方法的数据.全部执行一下loadData方法，将返回的promise填充回去
      */
-    const promises = matchRoutes(routes, req.url).filter(route => {console.log(route.route, typeof route.loadData === 'function'); return false}).map(route => route.loadData(store));
+    const promises = matchRoutes(routes, req.url).filter(route => typeof route.route.loadData === 'function').map(route => route.route.loadData(store));
     Promise.all(promises).then(() => {
-
         const ServerApp = createServerRouter(req, res);
         const htmlStr = generatorHTML(store, ( <AppComponent initState={store}><ServerApp /></AppComponent>));
         res.send(htmlStr);

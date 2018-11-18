@@ -16,7 +16,7 @@ const router = [
         path: '/',
         key: '/main',
         component: MainView,
-        route: [
+        routes: [
             {
                 path: '/',
                 key: '/',
