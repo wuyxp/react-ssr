@@ -4,4 +4,6 @@
  * @time: 2018/11/18 10:45
  */
 
-export const baseURL = "api.github.com";
+export default {
+    baseURL: "https://api.github.com",
+};

@@ -9,7 +9,7 @@ import proxy from 'express-http-proxy';
 import React from 'react';
 import { matchRoutes } from 'react-router-config'
 
-import { baseURL } from '../request/serverConfig'
+import serverConfig from '../request/serverConfig'
 import createServerRouter from '../routers/ServerRouter'
 import AppComponent from '../container/App'
 import { generatorHTML } from './utils'
@@ -22,7 +22,7 @@ const store = createStore({}, true);
 
 app.use('/', express.static("src/client/dist"));
 app.use(favicon('src/favicon.ico'));
-app.use('/api', proxy(baseURL, {
+app.use('/api', proxy(serverConfig.baseURL, {
     https: true,
 }));
 
