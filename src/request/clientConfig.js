@@ -5,5 +5,5 @@
  */
 
 export default {
-    baseURL: "/"
+    baseURL: "/api/v2"
 };

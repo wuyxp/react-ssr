@@ -7,8 +7,6 @@
 export default {
     //TODO 这里写一些公共的请求配置
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'react-ssr',
         'X-Auth-Token': 'AF0NbrwOEzFuAgslpk27ZsyuirOfV6qnI4679pZk'
     },
 }

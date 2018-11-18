@@ -21,7 +21,7 @@ const app = express();
 
 app.use('/', express.static("src/client/dist"));
 app.use(favicon('src/favicon.ico'));
-app.use('/api', proxy(serverConfig.baseURL, {
+app.use('/api/v2', proxy(serverConfig.baseURL, {
     https: true,
 }));
 
