@@ -4,8 +4,9 @@
  * @time: 2018/11/14 10:41
  */
 import express from 'express';
+import favicon from 'serve-favicon';
 import React from 'react';
-import { matchPath } from 'react-router-dom'
+import { matchRoutes } from 'react-router-config'
 
 import createServerRouter from '../routers/ServerRouter'
 import AppComponent from '../container/App'
@@ -19,20 +20,15 @@ const store = createStore();
 
 
 app.use('/', express.static("src/client/dist"));
+app.use(favicon('src/favicon.ico'));
 
 app.get('*', (req, res) => {
 
     console.log(req.url);
-    const promises = [];
-    routes.some(route => {
-        const match = matchPath(req.url, route);
-        if (match){
-            if(typeof route.loadData === 'function'){
-                promises.push(route.loadData(store));
-            }
-        }
-        return match
-    });
+    /*
+     * 这里将通过matchRoutes匹配的路由，过滤一下没有loadData方法的数据.全部执行一下loadData方法，将返回的promise填充回去
+     */
+    const promises = matchRoutes(routes, req.url).filter(route => {console.log(route.route, typeof route.loadData === 'function'); return false}).map(route => route.loadData(store));
     Promise.all(promises).then(() => {
 
         const ServerApp = createServerRouter(req, res);
