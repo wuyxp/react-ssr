@@ -18,7 +18,6 @@ import createStore from '../store'
 
 
 const app = express();
-const store = createStore({}, true);
 
 app.use('/', express.static("src/client/dist"));
 app.use(favicon('src/favicon.ico'));
@@ -28,6 +27,7 @@ app.use('/api', proxy(serverConfig.baseURL, {
 
 app.get('*', (req, res) => {
 
+    const store = createStore({}, true);
     console.log(req.url);
     /*
      * 这里将通过matchRoutes匹配的路由，过滤一下没有loadData方法的数据.全部执行一下loadData方法，将返回的promise填充回去
