@@ -4,25 +4,23 @@
  * @time: 2018/11/15 17:29
  */
 
-import { createStore, combineReducers, applyMiddleware, compose,  } from 'redux';
+import { createStore, applyMiddleware, compose,  } from 'redux';
 import reduxThunk from 'redux-thunk';
-import { reducer as homeReducer } from '../container/home';
-import { reducer as topicsReducer } from '../container/topics'
 
-const reducer = combineReducers({
-    home: homeReducer,
-    topics: topicsReducer
-});
+import createRequest from '../request'
+import reducers from './reducers'
 
-const composeEnhancers =
-    typeof window === 'object' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        }) : compose;
+export default (initState = {}, isServer = false) => {
+    const composeEnhancers =
+        typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+            window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            }) : compose;
 
-const enhancer = composeEnhancers(
-    applyMiddleware(reduxThunk),
-);
+    const request = createRequest(isServer);
+    const enhancer = composeEnhancers(
+        applyMiddleware(reduxThunk.withExtraArgument(request)),
+    );
 
-// const store = createStore(reducer, enhancer);
-export default (initState = {}) => createStore(reducer, initState, enhancer);
+    return createStore(reducers, initState, enhancer);
+}
