@@ -5,10 +5,8 @@
  */
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import Header from '../../components/Header'
 
 import { fetchRepositories } from './store/actions'
-import store from '../../store'
 
 class View extends Component{
 

@@ -35,7 +35,14 @@ app.get('*', (req, res) => {
     /*
      * 这里将通过matchRoutes匹配的路由，过滤一下没有loadData方法的数据.全部执行一下loadData方法，将返回的promise填充回去
      */
-    const promises = matchRoutes(routes, req.url).filter(route => typeof route.route.loadData === 'function').map(route => route.route.loadData(store));
+    const promises = matchRoutes(routes, req.url)
+        .filter(route => typeof route.route.loadData === 'function')
+        .map(route => {
+            // 这里将所有loadData返回返回的结果，都以成功状态的promise返回回去，保证整个页面的渲染效果
+            return new Promise(resolve => {
+                route.route.loadData(store).then(resolve,resolve);
+            });
+        });
     Promise.all(promises).then(() => {
         const ServerApp = createServerRouter(req, res, context);
         const htmlStr = generatorHTML(store, ( <AppComponent initState={store}><ServerApp /></AppComponent>));
