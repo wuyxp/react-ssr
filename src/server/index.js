@@ -40,7 +40,12 @@ app.get('*', (req, res) => {
         .map(route => {
             // 这里将所有loadData返回返回的结果，都以成功状态的promise返回回去，保证整个页面的渲染效果
             return new Promise(resolve => {
-                route.route.loadData(store).then(resolve,resolve);
+                const loadDataCallback = route.route.loadData(store);
+                if(loadDataCallback instanceof Promise){
+                    loadDataCallback.then(resolve,resolve);
+                }else{
+                    resolve(loadDataCallback);
+                }
             });
         });
     Promise.all(promises).then(() => {
