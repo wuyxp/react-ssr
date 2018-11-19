@@ -28,8 +28,10 @@ app.use('/api/v2', proxy(serverConfig.baseURL, {
 app.get('*', (req, res) => {
 
     const store = createStore({}, true);
+    const cssList = [];
     const context = {
-        status: 200
+        status: 200,
+        insertCss: (style) => cssList.push(style._getCss())
     };
     console.log(req.url);
     /*
@@ -50,9 +52,8 @@ app.get('*', (req, res) => {
         });
     Promise.all(promises).then(() => {
         const ServerApp = createServerRouter(req, res, context);
-        const htmlStr = generatorHTML(store, ( <AppComponent initState={store}><ServerApp /></AppComponent>));
+        const htmlStr = generatorHTML(store, ( <AppComponent initState={store}><ServerApp /></AppComponent>), context, cssList);
 
-        console.log(context);
         if(context.action === 'REPLACE'){
             res.redirect( 301, context.url );
         }else{
