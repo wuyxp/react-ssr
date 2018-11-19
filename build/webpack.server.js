@@ -5,6 +5,7 @@
  */
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const merge = require('webpack-merge');
 
 const baseConfig = require('./webpack.base');
@@ -38,6 +39,13 @@ const serverConfig = {
                 }
             ]
         }]
-    }
+    },
+    /*
+    plugins: [
+        new CopyWebpackPlugin([
+            { from: 'src/server/index.ejs', to: './' }
+        ])
+    ]
+    */
 }
 module.exports = merge(baseConfig, serverConfig);

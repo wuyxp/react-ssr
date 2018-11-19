@@ -21,6 +21,8 @@ const app = express();
 
 app.use('/', express.static("src/client/dist"));
 app.use(favicon('src/favicon.ico'));
+app.set('view engine','ejs');
+app.set('views', 'src/server/');
 app.use('/api/v2', proxy(serverConfig.baseURL, {
     https: true,
 }));
@@ -52,13 +54,20 @@ app.get('*', (req, res) => {
         });
     Promise.all(promises).then(() => {
         const ServerApp = createServerRouter(req, res, context);
-        const htmlStr = generatorHTML(store, ( <AppComponent initState={store}><ServerApp /></AppComponent>), context, cssList);
+        const {componentStr, cssStr} = generatorHTML(( <AppComponent initState={store}><ServerApp /></AppComponent>), cssList);
+        const storeState = JSON.stringify(store.getState());
 
         if(context.action === 'REPLACE'){
             res.redirect( 301, context.url );
         }else{
             // TODO 服务器端渲染个404 后，加入再点击公共组件的连接，那么就会使用浏览器端的路由组件，这时候，页面不会重新请求，虽然页面展示正确状态，但是状态码就不会再更新成200了。
-            res.status(context.status).send(htmlStr);
+            res.status(context.status);
+            res.render('index', {
+                title: 'react-ssr',
+                cssStr,
+                componentStr,
+                storeState,
+            });
         }
     });
 });
