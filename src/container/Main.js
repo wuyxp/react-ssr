@@ -10,7 +10,7 @@ import Header from '../components/header/'
 export default (props) => {
     return (
         <>
-            <Header/>
+            <Header {...props}/>
             {renderRoutes(props.route.routes)}
         </>
     )

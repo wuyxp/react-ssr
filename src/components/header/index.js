@@ -6,9 +6,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default () => {
+import styles from './styles.scss'
+import withStyles from '../../common/withStyles'
+
+const Header = () => {
     return (
-        <ul>
+        <ul className={styles.ul}>
             <li>
                 <Link to={"/"}>工作台</Link>
             </li>
@@ -24,4 +27,5 @@ export default () => {
 
         </ul>
     )
-}
+};
+export default withStyles(styles)(Header);

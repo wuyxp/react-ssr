@@ -1,0 +1,12 @@
+.ul{
+  li{
+    border: 1px solid aquamarine;
+    background: antiquewhite;
+    padding: 10px;
+    margin: 10px;
+    &:hover{
+      background: aquamarine;
+      border-color: blue;
+    }
+  }
+}
