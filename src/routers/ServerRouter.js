@@ -9,9 +9,9 @@ import { renderRoutes } from 'react-router-config'
 
 import routes from './index'
 
-export default (req, res) => {
+export default (req, res, context) => {
     return () => (
-        <StaticRouter location={req.url} context={{}}>
+        <StaticRouter location={req.url} context={context}>
             {renderRoutes(routes)}
         </StaticRouter>
     )

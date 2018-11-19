@@ -11,6 +11,8 @@ import {View as HelpView } from '../container/help'
 import {View as HeadlinesView} from '../container/headlines'
 import {View as TopicsView} from '../container/topics'
 
+import {View as NotFoundView } from '../container/notFound'
+
 const router = [
     {
         path: '/',
@@ -42,6 +44,9 @@ const router = [
                 component: TopicsView,
                 exact: true,
                 loadData:TopicsView.loadData
+            }, {
+                key: 'notFound',
+                component: NotFoundView
             }
         ]
     }
