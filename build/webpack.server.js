@@ -18,5 +18,20 @@ const serverConfig = {
         filename: "index.js",
         path: path.resolve(__dirname, '../src/server/dist')
     },
+    module: {
+        rules: [{
+            test: /\.scss$/,
+            use: [
+                'isomorphic-style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 1
+                    }
+                },
+                'sass-loader'
+            ]
+        }]
+    }
 }
 module.exports = merge(baseConfig, serverConfig);
