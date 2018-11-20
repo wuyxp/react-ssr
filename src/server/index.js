@@ -55,7 +55,15 @@ app.get('*', (req, res) => {
     Promise.all(promises).then(() => {
         const ServerApp = createServerRouter(req, res, context);
         const {componentStr, cssStr} = generatorHTML(( <AppComponent initState={store}><ServerApp /></AppComponent>), cssList);
-        const storeState = JSON.stringify(store.getState());
+        /**
+         * JSON.parse转json字符串时遇到一些特殊字符需要先转义,否则服务器端解析会报错
+         * @link http://qnimate.com/json-parse-throws-unexpected-token-error-for-valid-json/
+         * @type {string}
+         */
+        const storeState = JSON.stringify(store.getState()).replace(/\\n/g, "\\\\n")
+            .replace(/\\r/g, "\\\\r")
+            .replace(/\\t/g, "\\\\t")
+            .replace(/\\f/g, "\\\\f");
 
         if(context.action === 'REPLACE'){
             res.redirect( 301, context.url );
