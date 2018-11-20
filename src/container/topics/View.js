@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux'
 
 import { fetchRepositories } from './store/actions'
+import {Helmet} from "react-helmet";
 
 class View extends Component{
 
@@ -17,6 +18,9 @@ class View extends Component{
     render() {
         return (
             <>
+                <Helmet>
+                    <title>react-ssr 我的语雀文章</title>
+                </Helmet>
                 <h1>文由汝心生，笔墨语雀来</h1>
                 <dl>
                     <dt>这里是我在语雀上的文章列表</dt>

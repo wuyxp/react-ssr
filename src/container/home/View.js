@@ -6,6 +6,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {Helmet} from "react-helmet";
 
 import withStyles from '../../common/withStyles'
 import styles from './styles.scss'
@@ -14,6 +15,10 @@ class Home extends Component{
     render() {
         return (
             <>
+                <Helmet>
+                    <title>react-ssr 做最专业的SSR框架</title>
+                    <meta name="Description" content="主要是学习慕课网dell老师的react服务器渲染原理" />
+                </Helmet>
                 <div>来自服务端的内容提示：</div>
                 <h1 className={styles.title}>渣比群主!</h1>
                 <button onClick={() => {alert("点击事件已经加上")}}>点击啊</button>
