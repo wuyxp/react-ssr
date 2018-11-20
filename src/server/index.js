@@ -8,6 +8,7 @@ import favicon from 'serve-favicon';
 import proxy from 'express-http-proxy';
 import React from 'react';
 import { matchRoutes } from 'react-router-config'
+import Helmet from 'react-helmet'
 
 import serverConfig from '../request/serverConfig'
 import createServerRouter from '../routers/ServerRouter'
@@ -28,7 +29,7 @@ app.use('/api/v2', proxy(serverConfig.baseURL, {
 }));
 
 app.get('*', (req, res) => {
-
+    const helmet = Helmet.renderStatic();
     const store = createStore({}, true);
     const cssList = [];
     const context = {
@@ -75,6 +76,7 @@ app.get('*', (req, res) => {
                 cssStr,
                 componentStr,
                 storeState,
+                helmet,
             });
         }
     });
